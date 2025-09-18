@@ -8,7 +8,22 @@ builder.Services.AddDbContext<WebSalesContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<SeedingService>();
+
 var app = builder.Build();
+
+// Seeding de dados
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var seedingService = services.GetRequiredService<SeedingService>();
+
+    var env = services.GetRequiredService<IWebHostEnvironment>();
+    if (env.IsDevelopment())
+    {
+        seedingService.Seed();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
