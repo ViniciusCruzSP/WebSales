@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WebSales.Data;
+using WebSales.Services;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WebSalesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebSalesContext") ?? throw new InvalidOperationException("Connection string 'WebSalesContext' not found.")));
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<WebSalesContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<DepartmentService>();
+builder.Services.AddScoped<SellerService>();
 
 var app = builder.Build();
 
