@@ -8,14 +8,13 @@ builder.Services.AddDbContext<WebSalesContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddScoped<DepartmentService>();
 builder.Services.AddScoped<SellerService>();
 
 var app = builder.Build();
 
-// Seeding de dados
+// Data seeding
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
