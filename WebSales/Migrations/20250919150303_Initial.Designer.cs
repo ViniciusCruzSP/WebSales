@@ -12,8 +12,8 @@ using WebSales.Data;
 namespace WebSales.Migrations
 {
     [DbContext(typeof(WebSalesContext))]
-    [Migration("20250918130207_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20250919150303_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -3,32 +3,32 @@
 @{
     ViewData["Title"] = "Departments";
 }
-
-<h1 class="mt-4">@ViewData["Title"]</h1>
-
-<p class="my-4">
-    <a asp-action="Create" class="btn btn-primary rounded-5">Create New</a>
-</p>
-<table class="table">
+<div class="d-flex mt-4 mb-2 justify-content-center">
+    <h1>@ViewData["Title"]</h1>
+    <p class="ms-3 mt-1">
+        <a asp-action="Create" class="btn btn-primary rounded-5">Create New</a>
+    </p>
+</div>
+<table class="table table-striped">
     <thead>
         <tr>
             <th class="bg-primary">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th class="bg-primary"></th>
-            </tr>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td class="fs-5 fw-bold align-content-center">
+                <td class="fw-bold align-content-center">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-secondary mx-2" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-secondary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-secondary mx-2 btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-secondary btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
