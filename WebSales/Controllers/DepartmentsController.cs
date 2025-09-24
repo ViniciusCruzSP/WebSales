@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using WebSales.Data;
 using WebSales.Models;
+using WebSales.Services.Exceptions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebSales.Controllers
 {
@@ -139,14 +141,21 @@ namespace WebSales.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var department = await _context.Department.FindAsync(id);
-            if (department != null)
+            try
             {
-                _context.Department.Remove(department);
-            }
+                var department = await _context.Department.FindAsync(id);
+                if (department != null)
+                {
+                    _context.Department.Remove(department);
+                }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Department can't be deleted because it has sellers"});
+            }
         }
 
         private bool DepartmentExists(int id)
