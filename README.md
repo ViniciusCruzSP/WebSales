@@ -124,5 +124,6 @@ Vinicius Cruz
 🌐 [https://www.linkedin.com/in/vinicius-da-cruz-costa/]
 
 📝 Licença
+
 Este projeto é de uso livre para fins educacionais.
 Sinta-se à vontade para clonar, modificar e evoluir o código.
